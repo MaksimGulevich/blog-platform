@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    padding: 0 20px;
+    width: 1440px;
+    height: 80px;
+    background-color: white;
+}
+
+.header__title {
+    margin: auto auto auto 22px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.header__button {
+    margin: auto 5px;
+    width: 109px;
+    height: 51px;
+    background-color: transparent;
+    border: none;
+}
+
+.header__button:hover {
+    border: 1px solid #52C41A;
+    border-radius: 2px;
+    color: #52C41A;
+}

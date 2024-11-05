@@ -1,0 +1,111 @@
+.articl{
+    margin: 26px auto;
+    box-sizing: border-box;
+    padding: 16px;
+    width: 938px;
+    height: min-content;
+    background-color: white;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+}
+/* Стили для обертки одной статьи*/
+.articl__header {
+    box-sizing: border-box;
+    display: flex;
+    height: 140px;
+}
+
+/* Стили для содержимого статьи*/
+.articl__contant{
+    width: 682px;
+}
+
+/* Стили для заголовка статьи*/
+.articl__title {
+    display: inline;
+    overflow: hidden;
+    max-width: 160px;
+    height: 28px;
+    margin: 0 12px 5px 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1890FF;
+}
+
+.articl__heart {
+    font-size: 16px;
+}
+
+/* Стили для контейнера тегов статьи*/
+.articl__tagbox {
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 0 5px;
+    height: 20px;
+    align-content: center;
+    /* width: max-content; */
+    overflow: hidden;
+    max-width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+/* Стили для тегов*/
+.articl__tag {
+    margin: 0;
+    font-size: 12px;
+    color: rgb(0, 0, 0)
+}
+
+/* Стили для описания статьи*/
+.articl__discription {
+    overflow: hidden;
+    width: 682px;
+    height: 45px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);   
+}
+
+/* Стили для div с содержанием информации об авторе статьи*/
+.articl__author {
+    margin-left: auto;
+    margin-right: 12px;
+}
+
+/* Стили для имени автора*/
+.articl__name {
+    font-size: 18px;
+    margin: 0;
+}
+/* Стили для даты создания поста*/
+.articl__date {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.50);
+    margin: 0;
+}
+
+/* Стили для аватарки автора статьи*/
+.articl__imgbox {
+    overflow: hidden;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+/* Стили для аватарки автора статьи*/
+.articl__img {
+    width: 46px;
+    height: 46px;
+}
+
+
+/* Стили для rкартинок в статьях что бы не вылазили за блок*/
+img {
+    max-width: 800px;
+}
+
+.articl__main {
+    overflow: hidden;
+    max-width: 900px;
+}
