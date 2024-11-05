@@ -4,7 +4,7 @@ import { HeartOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { format, parseISO } from 'date-fns'
 import { Pagination } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { onPageChange } from '../Store/ShowSlice'
 
@@ -16,9 +16,20 @@ export default function ArticlesList() {
   // Записываем в переменную количество
   const articlesCount = useSelector((state) => state.show.items.articlesCount)
   // Записываем в переменную текущую страницу
-  const currentPage = useSelector((state) => state.show.page)
+
   // Создаем навигатор для навигации по страницам
   const navigate = useNavigate()
+  // Создаем переменную с получаемым айди страницы списка статей
+  const { idPage } = useParams()
+
+  // Диспатчим  onPageChange и передаем в нее айли страницы списка статей, для записи в стейт
+  dispatch(onPageChange(idPage))
+
+  // Функция для удаления всех символов, которые не являются буквами, цифрами или
+  // стандартными символами
+  function cleanText(text) {
+    return text.replace(/\p{Nonspacing_Mark}+/gu, '')
+  }
 
   // Функция для сокращения строки описания фильма
   function cutString(string, number) {
@@ -49,7 +60,7 @@ export default function ArticlesList() {
         if (tag.length !== 0) {
           return (
             <div className="article__tagbox" key={keyOfTags}>
-              <p className="article__tag">{cutString(tag, 20)}</p>
+              <p className="article__tag">{cutString(cleanText(tag), 20)}</p>
             </div>
           )
         }
@@ -73,15 +84,15 @@ export default function ArticlesList() {
       <article className="article" key={item.slug}>
         <div className="article__contant">
           <h2 className="article__title">
-            <button className="article__button" type="button" onClick={() => navigate(`/${item.slug}`)}>
-              <span className="article__span">{cutString(item.title, 30)}</span>
+            <button className="article__button" type="button" onClick={() => navigate(`/article/${item.slug}`)}>
+              <span className="article__span">{cutString(cleanText(item.title), 50)}</span>
             </button>
           </h2>
           <HeartOutlined className="article__heart">{item.favoritesCount}</HeartOutlined>
           <div className="article__div">{item.favoritesCount}</div>
           <br />
           {tags}
-          <div className="article__description">{cutString(item.description, 300)}</div>
+          <div className="article__description">{cutString(cleanText(item.description), 300)}</div>
         </div>
         <div className="article__author">
           <h2 className="article__name"> {item.author.username}</h2>
@@ -101,8 +112,10 @@ export default function ArticlesList() {
       <Pagination
         defaultPageSize={5}
         align="center"
-        current={currentPage}
-        onChange={(page) => dispatch(onPageChange(page))}
+        current={idPage}
+        onChange={(page) => {
+          navigate(`/${page}`)
+        }}
         total={articlesCount}
       />
     </>

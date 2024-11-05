@@ -13,6 +13,12 @@ export default function Article() {
   const dispatch = useDispatch()
   const { id } = useParams()
 
+  // Функция для удаления всех символов, которые не являются буквами, цифрами или
+  // стандартными символами
+  function cleanText(text) {
+    return text.replace(/\p{Nonspacing_Mark}+/gu, '')
+  }
+
   // Функция для сокращения строки описания фильма
   function cutString(string, number) {
     let str = string
@@ -49,7 +55,7 @@ export default function Article() {
       keyOfTags += 1
       return (
         <div className="articl__tagbox" key={keyOfTags}>
-          <p className="articl__tag">{tag}</p>
+          <p className="articl__tag">{cleanText(cutString(tag, 300))}</p>
         </div>
       )
     })
@@ -58,12 +64,12 @@ export default function Article() {
       <article className="articl">
         <section className="articl__header">
           <div className="articl__contant">
-            <h2 className="articl__title">{cutString(article.title, 30)}</h2>
+            <h2 className="articl__title">{cutString(cleanText(article.title), 50)}</h2>
             <HeartOutlined className="articl__heart" />
             <span>{article.favoritesCount}</span>
             <br />
             {tags}
-            <div className="articl__discription">{article.description}</div>
+            <div className="articl__discription">{cleanText(article.description)}</div>
           </div>
           <div className="articl__author">
             <h2 className="articl__name"> {article.author.username}</h2>
@@ -74,7 +80,7 @@ export default function Article() {
           </div>
         </section>
         <section className="articl__main">
-          <ReactMarkdown>{article.body}</ReactMarkdown>
+          <ReactMarkdown>{cleanText(article.body)}</ReactMarkdown>
         </section>
       </article>
     )

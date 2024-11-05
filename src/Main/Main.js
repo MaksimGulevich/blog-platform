@@ -21,7 +21,8 @@ export default function Main() {
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<ArticlesList />} />
-          <Route path="/:id" element={<Article />} />
+          <Route path="/:idPage" element={<ArticlesList />} />
+          <Route path="/article/:id" element={<Article />} />
         </Routes>
       </BrowserRouter>
     </main>
