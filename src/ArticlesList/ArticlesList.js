@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './ArticlesList.css'
 import { HeartOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,7 +23,9 @@ export default function ArticlesList() {
   const { idPage } = useParams()
 
   // Диспатчим  onPageChange и передаем в нее айли страницы списка статей, для записи в стейт
-  dispatch(onPageChange(idPage))
+  useEffect(() => {
+    dispatch(onPageChange(idPage))
+  }, [idPage])
 
   // Функция для удаления всех символов, которые не являются буквами, цифрами или
   // стандартными символами
