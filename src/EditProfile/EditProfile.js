@@ -1,8 +1,15 @@
 import React from 'react'
 import './EditProfile.css'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
+import { editProfile } from '../Store/UserInfo'
 
 export default function EditProfile() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -10,8 +17,33 @@ export default function EditProfile() {
   } = useForm()
   return (
     <section className="edit">
-      <form className="edit__form" onSubmit={handleSubmit((data) => console.log(data))}>
-        <h2 className="edit__title">Create new account</h2>
+      <form
+        className="edit__form"
+        onSubmit={handleSubmit((data) => {
+          const { email, password, username, image = null, bio = null } = data
+          const user = {
+            email,
+            username,
+            bio,
+            image,
+            password,
+          }
+          console.log(user)
+          // При отправке формы, диспатчим отправку данных на сервер
+          dispatch(editProfile({ token: localStorage.getItem('token'), user }))
+            .then((res) => {
+              // Проверяем, если запрос успешен, то записываем токен в локалсторедж
+              if (res.meta.requestStatus === 'fulfilled' && res.payload.user) {
+                navigate('/')
+                // Иначе выдаем ошибку в консоль
+              } else {
+                console.error('Запрос завершился с ошибкой')
+              }
+            })
+            .catch((error) => console.log(error))
+        })}
+      >
+        <h2 className="edit__title">Edit account</h2>
         <label className="edit__label" htmlFor="username">
           <span className="edit__span">Username</span>
           <input
@@ -54,11 +86,11 @@ export default function EditProfile() {
         <label className="edit__label" htmlFor="newpassword">
           <span className="edit__span">New password</span>
           <input
-            className={errors.newpassword ? 'edit__error' : 'edit__input'}
-            type="text"
+            className={errors.password ? 'edit__error' : 'edit__input'}
+            type="password"
             placeholder="New password"
-            id="newpassword"
-            {...register('newpassword', {
+            id="password"
+            {...register('password', {
               required: 'Поле обязательно для заполнения',
               minLength: {
                 value: 6,
@@ -74,21 +106,21 @@ export default function EditProfile() {
               },
             })}
           />
-          {errors.newpassword && <p style={{ color: 'red' }}>{errors.newpassword.message}</p>}
+          {errors.password && <p style={{ color: 'red' }}>{errors.password.message}</p>}
         </label>
-        <label className="edit__label" htmlFor="avatarimage">
+        <label className="edit__label" htmlFor="image">
           <span className="edit__span">Avatar image (url)</span>
           <input
-            className={errors.avatarimage ? 'edit__error' : 'edit__input'}
+            className={errors.image ? 'edit__error' : 'edit__input'}
             type="text"
             placeholder="Avatar image"
-            id="avatarimage"
-            {...register('avatarimage', {
+            id="image"
+            {...register('image', {
               required: 'Поле обязательно для заполнения',
               pattern: { value: /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/, message: 'Неверный URL адрес' },
             })}
           />
-          {errors.avatarimage && <p style={{ color: 'red' }}>{errors.avatarimage.message}</p>}
+          {errors.image && <p style={{ color: 'red' }}>{errors.image.message}</p>}
         </label>
         <button className="edit__button" type="submit" id="checkbox">
           <span className="edit__button_span">Save</span>

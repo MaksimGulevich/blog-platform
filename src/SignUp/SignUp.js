@@ -2,17 +2,35 @@ import React from 'react'
 import './SignUp.css'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
+import { postUserRegistration } from '../Store/UserInfo'
 
 export default function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm()
+
+  const dispatch = useDispatch()
 
   return (
     <section className="signup">
-      <form className="signup__form" onSubmit={handleSubmit((data) => console.log(data))}>
+      <form
+        className="signup__form"
+        onSubmit={handleSubmit((data) => {
+          const { username, email, password } = data
+          const user = {
+            username,
+            email,
+            password,
+          }
+          console.log(user)
+          dispatch(postUserRegistration({ user }))
+        })}
+      >
         <h2 className="signup__title">Create new account</h2>
         <label className="signup__label" htmlFor="username">
           <span className="signup__span">Username</span>
@@ -99,6 +117,7 @@ export default function SignUp() {
                 value: /^[a-zA-Z0-9]*$/,
                 message: 'Неверное имя пользователя',
               },
+              validate: (value) => value === getValues('password') || 'Пароли не совпадают',
             })}
           />
           {errors.repeatpassword && <p style={{ color: 'red' }}>{errors.repeatpassword.message}</p>}
@@ -123,7 +142,7 @@ export default function SignUp() {
           <span className="signup__button_span">Create</span>
         </button>
         <p className="signup__p">
-          Already have an account? <Link to="/signin">Sign In.</Link>
+          Already have an account? <Link to="/sign-in">Sign In.</Link>
         </p>
       </form>
     </section>

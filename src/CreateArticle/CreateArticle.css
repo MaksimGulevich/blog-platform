@@ -1,0 +1,150 @@
+.createarticle {
+    margin: auto;
+    width: 938px;
+    min-height: 701px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 1.97);
+}
+
+.createarticle__title {
+    margin: 10px auto 20px auto;
+    font-size: 20px;
+    font-weight: 500;
+    color: #262626;
+}
+
+.createarticle__form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 874px;
+}
+
+.createarticle__label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 874px;
+}
+
+.createarticle__span {
+    margin-bottom: 5px;
+}
+
+.createarticle__input {
+    box-sizing: border-box;
+    padding-left: 10px;
+    height: 40px;
+    border: 1px solid #BFBFBF;
+    border-radius: 4px;
+    outline-color: blue ;
+}
+
+.createarticle__textarea {
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-top: 10px;
+    height: 168px;
+    border: 1px solid #BFBFBF;
+    border-radius: 4px;
+    outline-color: blue ;
+}
+
+.createarticle__input_tags {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 300px;
+    height: 40px;
+    border: 1px solid #BFBFBF;
+    border-radius: 4px;
+    outline-color: blue ;
+}
+
+.createarticle__label_checkbox {
+   flex-direction: row;
+   font-size: 14px;
+   color: #595959;
+}
+
+.createarticle__input_checkbox {
+    margin-right: 10px;
+    width: 30px;
+    height: 20px;
+ }
+
+ .createarticle__button {
+    margin-bottom: 12px;
+    width: 320px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1890FF;
+    color: white;
+ }
+
+ .createarticle__p {
+    margin: 12px auto;
+    color: #8C8C8C;
+    font-size: 12px;
+ }
+
+ .createarticle__error {
+    height: 40px;
+    border: 2px solid red;
+    border-radius: 4px;
+    outline-color: red;
+ }
+
+ .createarticle__error_textarea{
+    height: 168px;
+    border: 2px solid red;
+    border-radius: 4px;
+    outline-color: red;
+ }
+
+ /*Кнопка удаления тэга*/
+.createarticle__delete {
+    margin-left: 17px;
+    margin-right: 12px;
+    width: 120px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 2px;
+    color: rgb(255, 0, 0);
+ }
+
+ /*Задаем дисплей флекс контейнеру содержащему теги и кнопку добавить тег*/
+ .createarticle__flex_tag{
+    display: flex;
+ }
+
+ /*Убираем  маргин снизу у кнопки добавить тег, в момент, когда тегов нет*/
+ .createarticle__label_tag{
+   margin-bottom: 0;
+ }
+
+.crearearicle__div_tags {
+    display: flex;
+    flex-direction:column;
+    max-width: 450px;
+}
+
+.crearearicle__div_tags div {
+    display: flex;
+    width: 450px;
+    margin-bottom: 12px;
+}
+
+/*Кнопка добавить тег*/
+.createarticle__button_add {
+    margin-top: auto;
+    margin-bottom: 12px;
+    width: 136px;
+    height: 40px;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    background-color:transparent;
+    color: #1890FF;
+}

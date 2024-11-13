@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    padding: 0 20px;
+    padding: 0 22px;
     width: 1440px;
     height: 80px;
     background-color: white;
@@ -20,8 +20,63 @@
     border: none;
 }
 
+.header__button_logout {
+    margin: auto 0px auto 30px;
+    width: 109px;
+    height: 51px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 2px;
+    color: black;
+}
+
+.header__button_article {
+    width: 112;
+    height: 32px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 2px;
+    color: black;
+}
+
 .header__button:hover {
     border: 1px solid #52C41A;
     border-radius: 2px;
     color: #52C41A;
+}
+
+.header__button_none {
+    display: none;
+}
+
+.header__author {
+    display: flex;
+}
+
+.header__imgbox {
+    overflow: hidden;
+    margin-left: 12px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.header__img {
+    width: 46px;
+    height: 46px;
+}
+
+ a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color:rgba(0, 0, 0, 0.85)
+}
+.header__name {
+    margin: auto 12px auto 12px;
+}
+
+.header__author_none {
+    display: none;
 }

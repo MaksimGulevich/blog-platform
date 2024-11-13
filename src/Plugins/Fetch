@@ -1,8 +1,0 @@
-const fetchApi = async () => {
-  const response = await fetch('https://blog-platform.kata.academy/api')
-  const data = await response.json()
-  console.log(data)
-  return data
-}
-
-export default fetchApi

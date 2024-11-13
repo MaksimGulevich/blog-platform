@@ -11,7 +11,7 @@
 .articl__header {
     box-sizing: border-box;
     display: flex;
-    height: 140px;
+    min-height: 55px;
 }
 
 /* Стили для содержимого статьи*/
@@ -33,6 +33,7 @@
 
 .articl__heart {
     font-size: 16px;
+    margin-right: 5px;
 }
 
 /* Стили для контейнера тегов статьи*/
@@ -44,9 +45,8 @@
     padding: 0 5px;
     height: 20px;
     align-content: center;
-    /* width: max-content; */
     overflow: hidden;
-    max-width: 100px;
+    max-width: 140px;
     height: 20px;
     border: 1px solid black;
     border-radius: 2px;
@@ -59,15 +59,39 @@
     color: rgb(0, 0, 0)
 }
 
+.articl__discriptionandbuttons {
+    display: flex;
+}
+
 /* Стили для описания статьи*/
 .articl__discription {
     overflow: hidden;
-    width: 682px;
+    /* width: 682px; */
     height: 45px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.5);   
 }
 
+.articl__button {
+    background-color: transparent;
+    border: 1px solid #52C41A;
+    color: #52C41A;
+    border-radius: 5px;
+    width: 78px;
+    height: 32px;
+   
+}
+
+.articl__button:nth-child(2) {
+    margin-left: auto;
+    margin-right: 12px;
+    border-color: #F5222D;
+    color: #F5222D;
+}
+
+.articl__button_none{
+    display: none;
+}
 /* Стили для div с содержанием информации об авторе статьи*/
 .articl__author {
     margin-left: auto;
