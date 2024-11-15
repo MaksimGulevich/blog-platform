@@ -65,9 +65,10 @@
     font-size: 12px;
  }
 
- a {
+ .signup__p a {
     text-decoration: none;
     color: #1890FF;
+    font-size: 12px;
  }
 
  .signup__error {

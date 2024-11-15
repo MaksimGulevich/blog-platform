@@ -4,7 +4,7 @@ import Icon, { HeartOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { format, parseISO } from 'date-fns'
 import { Pagination, Space } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 
 import { getArticles, onChangeFavorited } from '../Store/ShowSlice'
 import { deleteFavorites, postFavorites } from '../Store/PostFavorite'
@@ -112,9 +112,9 @@ export default function ArticlesList() {
       <article className="article" key={item.slug}>
         <div className="article__contant">
           <h2 className="article__title">
-            <button className="article__button" type="button" onClick={() => navigate(`/article/${item.slug}`)}>
+            <Link className="article__button" to={`/article/${item.slug}`}>
               <span className="article__span">{cutString(cleanText(item.title), 50)}</span>
-            </button>
+            </Link>
           </h2>
 
           {item.favorited ? (
@@ -126,8 +126,10 @@ export default function ArticlesList() {
                   marginRight: '5px',
                 }}
                 onClick={() => {
-                  dispatch(onChangeFavorited(item.slug))
-                  dispatch(deleteFavorites({ token, slug }))
+                  if (token) {
+                    dispatch(onChangeFavorited(item.slug))
+                    dispatch(deleteFavorites({ token, slug }))
+                  }
                 }}
               />
             </Space>
@@ -135,8 +137,10 @@ export default function ArticlesList() {
             <HeartOutlined
               className="article__heart"
               onClick={() => {
-                dispatch(onChangeFavorited(item.slug))
-                dispatch(postFavorites({ token, slug }))
+                if (token) {
+                  dispatch(onChangeFavorited(item.slug))
+                  dispatch(postFavorites({ token, slug }))
+                }
               }}
             >
               {item.favoritesCount}
@@ -164,6 +168,7 @@ export default function ArticlesList() {
     <>
       {articles}
       <Pagination
+        showSizeChanger={false}
         defaultPageSize={5}
         align="center"
         current={idPages}

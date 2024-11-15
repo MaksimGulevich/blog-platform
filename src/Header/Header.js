@@ -45,16 +45,9 @@ export default function Header() {
         Sign Up
       </button>
       <div className={token && tokenFromState !== undefined ? 'header__author' : 'header__author_none'}>
-        <button
-          className="header__button header__button_article"
-          type="button"
-          aria-label="Написать статью"
-          onClick={() => {
-            navigate('/new-article')
-          }}
-        >
+        <Link className="header__button header__button_article" aria-label="Написать статью" to="/new-article">
           Create article
-        </button>
+        </Link>
 
         <p className="header__name">
           {' '}

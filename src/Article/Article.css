@@ -40,8 +40,8 @@
 .articl__tagbox {
     display: inline-block;
     margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     padding: 0 5px;
     height: 20px;
     align-content: center;
@@ -66,7 +66,6 @@
 /* Стили для описания статьи*/
 .articl__discription {
     overflow: hidden;
-    /* width: 682px; */
     height: 45px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.5);   
@@ -79,8 +78,17 @@
     border-radius: 5px;
     width: 78px;
     height: 32px;
-   
 }
+
+.articl__button_edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    font-size: 14px;
+    
+}
+
 
 .articl__button:nth-child(2) {
     margin-left: auto;
@@ -101,10 +109,12 @@
 /* Стили для имени автора*/
 .articl__name {
     font-size: 18px;
+    font-weight: 500;
     margin: 0;
 }
 /* Стили для даты создания поста*/
 .articl__date {
+    justify-self: end;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.50);
     margin: 0;

@@ -10,6 +10,7 @@ export const postUserRegistration = createAsyncThunk('data/postUserRegistration'
       body: JSON.stringify(user),
     })
     const result = await response.json()
+    console.log(result)
     return result
   } catch (err) {
     return console.log('что то пошло не так')
@@ -25,6 +26,7 @@ export const currentUser = createAsyncThunk('data/currentUser', async (token) =>
       },
     })
     const result = await response.json()
+    console.log(result)
     return result
   } catch (err) {
     return console.log('что то пошло не так')
@@ -69,6 +71,7 @@ const userInfoSlice = createSlice({
   name: 'userInfoSlice',
   initialState: {
     result: {},
+    resReg: {},
     token: '',
     status: 'none',
     error: null,
@@ -85,9 +88,10 @@ const userInfoSlice = createSlice({
         ...state,
         status: 'loading',
       }))
-      .addCase(postUserRegistration.fulfilled, (state) => ({
+      .addCase(postUserRegistration.fulfilled, (state, action) => ({
         ...state,
         status: 'succeeded',
+        resReg: action.payload,
       }))
       .addCase(postUserRegistration.rejected, (state, action) => ({
         ...state,

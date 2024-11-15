@@ -2,7 +2,7 @@ import React from 'react'
 import './SignUp.css'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { postUserRegistration } from '../Store/UserInfo'
 
@@ -16,6 +16,8 @@ export default function SignUp() {
 
   const dispatch = useDispatch()
 
+  const serverItems = useSelector((state) => state.userInfo.resReg)
+
   return (
     <section className="signup">
       <form
@@ -27,7 +29,7 @@ export default function SignUp() {
             email,
             password,
           }
-          console.log(user)
+
           dispatch(postUserRegistration({ user }))
         })}
       >
@@ -55,6 +57,9 @@ export default function SignUp() {
               },
             })}
           />
+          {serverItems.errors && serverItems.errors.username && (
+            <p style={{ color: 'red' }}>Пользователь с таким именем уже существует</p>
+          )}
           {errors.username && <p style={{ color: 'red' }}>{errors.username.message}</p>}
         </label>
         <label className="signup__label" htmlFor="email">
@@ -69,6 +74,9 @@ export default function SignUp() {
               pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, message: 'Неверный E-mail адрес' },
             })}
           />
+          {serverItems.errors && serverItems.errors.email && (
+            <p style={{ color: 'red' }}>E-mail адрес уже используется</p>
+          )}
           {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>}
         </label>
         <label className="signup__label" htmlFor="password">

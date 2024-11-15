@@ -4,7 +4,7 @@ import Icon, { HeartOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { format, parseISO } from 'date-fns'
 import ReactMarkdown from 'react-markdown'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { Popconfirm, Space } from 'antd'
 
 import { postFavorites, deleteFavorites } from '../Store/PostFavorite'
@@ -151,15 +151,16 @@ export default function Article() {
             </button>
           </Popconfirm>
 
-          <button
+          <Link
             className={
-              article.author.username === localStorage.getItem('username') ? 'articl__button' : 'articl__button_none'
+              article.author.username === localStorage.getItem('username')
+                ? 'articl__button articl__button_edit'
+                : 'articl__button_none'
             }
-            type="button"
-            onClick={() => navigate(`/articles/${article.slug}/edit`)}
+            to={`/articles/${article.slug}/edit`}
           >
-            Edit
-          </button>
+            <p>Edit</p>
+          </Link>
         </section>
 
         <section className="articl__main">
@@ -168,8 +169,6 @@ export default function Article() {
       </article>
     )
   }
-
-  console.log(article)
 
   return articl
 }

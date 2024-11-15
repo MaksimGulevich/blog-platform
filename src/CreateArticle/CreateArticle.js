@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './CreateArticle.css'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,6 +15,13 @@ export default function CreateArticle() {
 
   // Создаем Массив с  тегами
   const tagsArray = useSelector((state) => state.articleInfo.tags)
+
+  const token = localStorage.getItem('token')
+  useEffect(() => {
+    if (!token) {
+      navigate('/sign-in')
+    }
+  })
 
   // Извлекаем из useForm необходимые методы для работы с формами
   const {

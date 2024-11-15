@@ -33,7 +33,6 @@
 .article__button {
     margin: 0;
     padding: 0;
-    margin-bottom: 5px;
     border: none;
     background-color: transparent;
     text-decoration: none;
@@ -54,8 +53,9 @@
 /* Стили для контейнера тегов статьи*/
 .article__tagbox {
     display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     padding: 0 5px;
     height: 20px;
     align-content: center;
@@ -91,10 +91,12 @@
 /* Стили для имени автора*/
 .article__name {
     font-size: 18px;
+    font-weight: 500;
     margin: 0;
 }
 /* Стили для даты создания поста*/
 .article__date {
+    justify-self: end;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.50);
     margin: 0;
@@ -111,3 +113,4 @@
     width: 46px;
     height: 46px;
 }
+

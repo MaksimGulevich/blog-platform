@@ -22,11 +22,11 @@ export default function EditArticle() {
   // Создаем функцию навигейт
   const navigate = useNavigate()
 
+  // Извлекаем из useForm необходимые методы для работы с формами
   const {
     register,
     handleSubmit,
     formState: { errors },
-    // unregister,
     reset,
     control,
   } = useForm()
@@ -42,10 +42,6 @@ export default function EditArticle() {
   }, [])
 
   const stateArticle = useSelector((state) => state.editArticleInfo.article)
-
-  console.log(stateArticle)
-
-  // Извлекаем из useForm необходимые методы для работы с формами
 
   useEffect(() => {
     if (stateArticle.article) {
@@ -65,14 +61,12 @@ export default function EditArticle() {
         className="createarticle__form"
         onSubmit={handleSubmit((data) => {
           const { title, description, body, tagList } = data
-          // const tagList = Object.values(tags)
           const article = {
             title,
             description,
             body,
             tagList,
           }
-          console.log(article)
           // При отправке формы, диспатчим отправку данных на сервер
           dispatch(putArticle({ token: localStorage.getItem('token'), article, idArticle }))
             .then((res) => {
@@ -100,10 +94,6 @@ export default function EditArticle() {
             id="title"
             {...register('title', {
               required: 'Поле обязательно для заполнения',
-              // pattern: {
-              //   value: /^[a-zA-Zа-яА-Я0-9]*$/,
-              //   message: 'Неверное имя пользователя',
-              // },
             })}
           />
           {errors.title && <p style={{ color: 'red' }}>{errors.title.message}</p>}
@@ -131,9 +121,6 @@ export default function EditArticle() {
             id="body"
             {...register('body', {
               required: 'Поле обязательно для заполнения',
-              // pattern: {
-              //   value: /^[a-zA-Zа-яА-Я0-9.]*$/,
-              // },
             })}
           />
           {errors.body && <p style={{ color: 'red' }}>{errors.body.message}</p>}

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './EditProfile.css'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { editProfile } from '../Store/UserInfo'
@@ -14,7 +14,22 @@ export default function EditProfile() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm()
+
+  const userInfo = useSelector((state) => state.userInfo.result)
+  console.log(userInfo)
+
+  useEffect(() => {
+    if (userInfo.user) {
+      reset({
+        username: userInfo.user.username,
+        email: userInfo.user.email,
+        image: userInfo.user.image,
+      })
+    }
+  }, [userInfo, reset])
+
   return (
     <section className="edit">
       <form
